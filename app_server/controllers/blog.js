@@ -4,16 +4,26 @@ const debug = require('debug')('app:showController');
 
 
 module.exports.blogList = async function (req, res) {
-  try {
-    const dbParams = await util.setupDB();
-    const blogs = await dbParams.collection.find({}).toArray();
-    res.render('blog-list', { title: 'Blog List', blogs });
-    dbParams.client.close();
-  }
+    res.render('blog-list', { title: 'Blog List', 
+    blogs: [
+      {
+        "blogTitle": "Did I do it?",
+        "createdOn": "2024-02-19T23:23:55.107Z",
+    },
+    {
+        "blogTitle": "I really hope this is gonna show up on my blog!",
+        "blogText": "p.s. this took a long time",
+        "createdOn": "2024-02-19T23:23:55.107Z",
+        "_id": "65caad601d6f2ba6a81113c6"
+    },
+    {
+        "blogTitle": "I killed this assignment :0",
+        "createdOn": "2024-02-19T23:23:55.108Z",
+        "_id": "65caad751d6f2ba6a81113c7"
+    },
+    
+    ] });
   
-  catch (err) {
-    debug(err);
-  }
 }
 
 /* GET 'Add review' page */
